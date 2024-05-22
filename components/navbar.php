@@ -16,8 +16,8 @@
         <div class="navbar-left">
             <a href="../pages/customer_dashboard.php"><div class="nav-div">Home</div></a>
             <a href=""><div class="nav-div">Categories</div></a>
-            <a href=""><div class="nav-div">About Us</div></a>
-            <a href=""><div class="nav-div">Contact Us</div></a>
+            <a href="../pages/about_us.php"><div class="nav-div">About Us</div></a>
+            <a href="../pages/contact_us.php"><div class="nav-div">Contact Us</div></a>
             <a href="../pages/settings.php"><div class="nav-div">Settings</div></a>
         </div>
         <div class="navbar-right">
