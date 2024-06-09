@@ -1,3 +1,9 @@
+<?php
+session_start();
+require "../config/dbconn.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +19,7 @@
     </div>
 
         <div class="contact-img-div">
-        <img src="../about_pics/contact-img.png" alt="" class="contact-img">
+        <img src="../about_contact_pics/contact-img.png" alt="" class="contact-img">
         </div>
 
         <div class="contact-h1">

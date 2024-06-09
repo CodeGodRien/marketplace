@@ -826,6 +826,7 @@ body {
 .quantity-icon-div {
     
 }
+
 .fa-square-minus {
     color: #ffd43b;
     font-size: 24px;
@@ -1164,17 +1165,17 @@ body {
 
   .submit-email {
     position: absolute;
+    width: 100px;
+    height: 33px;
+    top: 64.5%;
     left: 73%;
-    top: 64%;
-    background-color: #FFD700;
-    font-size: 18px;
     border: none;
-    padding: 9px 10px;
-    text-align: none;
-    text-decoration: none;
-    border-radius: 15%;
-    display: inline-block;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
     font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
   }
 
   .contact-rectangle {
@@ -1187,4 +1188,14 @@ body {
     z-index: -1;
   }
 
+.left-about {
+    width: 50%;
+    height: 100vh;
+    background-color: #FFD700;
+}
 
+.right-about {
+    width: 50%;
+    height: 100vh;
+    background-color: chartreuse;
+}
