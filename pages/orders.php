@@ -17,13 +17,14 @@ require '../config/dbconn.php';
     </style>
 </head>
 <body>
-    <?php
-        include_once '../components/navbar.php';
-    ?>
-    <div class="about-container">
-        <div class="left-about">A</div>
-        <div class="right-about">B</div>
+    <div class="seller-dashboard-container">
+    <?php include_once '../components/seller_sidebar.php'; ?>
+        <div class="inner-dashboard-container">
+            
+        </div>
+
     </div>
+    <script src="../js/index.js"></script>
 </body>
 </html>
 
