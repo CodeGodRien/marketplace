@@ -20,7 +20,7 @@ require "../config/dbconn.php";
         <div class="upper-login"><h2>NUB Marketplace</h2></div>
         <div class="lower-login">
             <h1 class="login-h1">Login To Your Account</h1>
-                       
+            
         <?php
             if(isset($_SESSION['alert'])) {
             echo $_SESSION['alert'];
@@ -30,7 +30,7 @@ require "../config/dbconn.php";
             <form action="../crud/login.php" method="POST" id="login-form">
                 <input type="text" placeholder="NU Email" class="input-box" name="email">
                 <input type="password" placeholder="Password" class="input-box" name="password">
-                <input type="submit" name = "login_btn" value="Sign In" class="login-button">
+                <input type="submit" value="Sign In" class="login-button">
             </form>
         </div>
     </div>

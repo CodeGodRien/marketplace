@@ -4,12 +4,13 @@ require "../config/dbconn.php";
 
 $productID = $_GET['productID'];
 $userID = $_SESSION['userID'];
+$page = $_GET['pageID'];
 
 $sql = "SELECT * FROM products WHERE productID = '$productID'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-$productSellerID = $row['productSellerID'];
 $productName = $row['productName'];
+$productSellerID = $row['productSellerID'];
 $productUnitPrice = $row['productPrice'];
 
 $sql = "SELECT * FROM cart WHERE productID = '$productID'";
@@ -23,7 +24,7 @@ if (mysqli_num_rows($result) > 0) {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000,
+        timer: 2000,
         timerProgressBar: true,
         didOpen: (toast) => {
         toast.onmouseenter = Swal.stopTimer;
@@ -36,7 +37,11 @@ if (mysqli_num_rows($result) > 0) {
 }); 
     </script>
     ";
-    header("Location: ../pages/customer_dashboard.php");
+    if ($page != "detailed") {
+        header("Location: ../pages/customer_dashboard.php");
+    } else {
+        header("Location: ../pages/product_details.php?productID=$productID");
+    }
     exit();
     } else {
         $_SESSION['alert'] = "
@@ -48,11 +53,15 @@ if (mysqli_num_rows($result) > 0) {
           });
         </script>
         ";
-    header("Location: ../pages/customer_dashboard.php");
+    if ($page != "detailed") {
+        header("Location: ../pages/customer_dashboard.php");
+    } else {
+        header("Location: ../pages/product_details.php?productID=$productID");
+    }
     exit();
     }
 } else {
-    $sql = "INSERT INTO cart (userID, productID, productName, sellerID, quantity, unitPrice, timeAdded) VALUES ('$userID', '$productID', '$productName', '$productSellerID', 1,
+    $sql = "INSERT INTO cart (userID, productID, sellerID, quantity, unitPrice, timeAdded) VALUES ('$userID', '$productID', '$productSellerID', 1,
     '$productUnitPrice', CURRENT_TIMESTAMP)";
 
 if (mysqli_query($conn, $sql)) {
@@ -62,7 +71,7 @@ if (mysqli_query($conn, $sql)) {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000,
+        timer: 2000,
         timerProgressBar: true,
         didOpen: (toast) => {
         toast.onmouseenter = Swal.stopTimer;
@@ -75,7 +84,11 @@ if (mysqli_query($conn, $sql)) {
 }); 
     </script>
     ";
-    header("Location: ../pages/customer_dashboard.php");
+    if ($page != "detailed") {
+        header("Location: ../pages/customer_dashboard.php");
+    } else {
+        header("Location: ../pages/product_details.php?productID=$productID");
+    }
     exit();
 } else {
     $_SESSION['alert'] = "
@@ -87,7 +100,11 @@ if (mysqli_query($conn, $sql)) {
           });
         </script>
         ";
-    header("Location: ../pages/customer_dashboard.php");
+    if ($page != "detailed") {
+        header("Location: ../pages/customer_dashboard.php");
+    } else {
+        header("Location: ../pages/product_details.php?productID=$productID");
+    }
     exit();
 }
 }

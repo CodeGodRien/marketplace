@@ -41,11 +41,11 @@ Thank you for choosing [Company Name].
         </div>
 
         <div class="nub1-img-div">
-        <img src="../about_contact_pics/about-img.png" alt="" class="nub1-image">
+        <img src="../about_pics/nub1.png" alt="" class="nub1-image">
         </div>
 
         <div class="nub2-img-div">
-        <img src="../about_contact_pics/about-img2.png" alt="" class="nub2-image">
+        <img src="../about_pics/nub2.png" alt="" class="nub2-image">
         </div>
 
         <div class="about-rectangle">

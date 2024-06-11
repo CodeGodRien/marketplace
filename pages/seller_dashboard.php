@@ -70,7 +70,7 @@ require '../config/dbconn.php';
                                 </div>
                                 <div class="product-form-checkbox">
                                     <label class="checkBox">
-                                        <input id="ch1" type="checkbox" onclick="disableQuantity()">
+                                        <input id="ch1" type="checkbox">
                                         <div class="transition"></div>
                                     </label>
                                     <label for="">Made to order</label>
@@ -96,54 +96,49 @@ require '../config/dbconn.php';
                         <h3>Product Category</h3>
                     </div>
                     <div class="lower-category-form">
-                        <div class="upper-category">
-                            <div class="category-list">
-                                <div class="category-item">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" class="input">
-                                        <span class="custom-checkbox"></span>
-                                        Electronics
-                                    </label>
-                                </div>
-                                <div class="category-item">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" class="input">
-                                        <span class="custom-checkbox"></span>
-                                        Clothing & Apparel
-                                    </label>
-                                </div>
-                                <div class="category-item">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" class="input">
-                                        <span class="custom-checkbox"></span>
-                                        Jewelry & Accessories
-                                    </label>
-                                </div>
-                                <div class="category-item">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" class="input">
-                                        <span class="custom-checkbox"></span>
-                                        Food
-                                    </label>
-                                </div>
-                            <div class="category-item">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" class="input">
-                                        <span class="custom-checkbox"></span>
-                                        Beverages
-                                    </label>
-                            </div>
-                            <div class="category-item">
-                                <label>
+                        <div class="category-list">
+                             <div class="category-item">
+                                <label class="checkbox-label">
                                     <input type="checkbox" class="input">
                                     <span class="custom-checkbox"></span>
+                                    Electronics
                                 </label>
                             </div>
+                            <div class="category-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="input">
+                                    <span class="custom-checkbox"></span>
+                                    Clothing & Apparel
+                                </label>
+                            </div>
+                            <div class="category-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="input">
+                                    <span class="custom-checkbox"></span>
+                                    Jewelry & Accessories
+                                </label>
+                            </div>
+                            <div class="category-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="input">
+                                    <span class="custom-checkbox"></span>
+                                    Food
+                                </label>
+                            </div>
+                            <div class="category-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="input">
+                                    <span class="custom-checkbox"></span>
+                                    Beverages
+                                </label>
+                            </div>
+                            <div class="category-item">
+                            <label>
+                                <input type="checkbox" class="input">
+                                <span class="custom-checkbox"></span>
+                            </label>
+                            </div>
                         </div>
-                        <div class="add-variation">
-                            Hello World
-                        </div>
-                    </div>
                         <div class="category-next-button" id="category-next-button">
                             Next
                             <i class="fa-solid fa-arrow-right-long"></i>

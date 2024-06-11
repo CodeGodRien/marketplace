@@ -12,16 +12,18 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
+    <div class="navbar-marketplace">
         <div class="navbar-left">
             <a href="../pages/customer_dashboard.php"><div class="nav-div">Home</div></a>
             <a href=""><div class="nav-div">Categories</div></a>
+            <a href=""><div class="nav-div">My Orders</div></a>
             <a href="../pages/about_us.php"><div class="nav-div">About Us</div></a>
-            <a href="../pages/contact_us.php"><div class="nav-div">Contact Us</div></a>
+            <a href=""><div class="nav-div">Contact Us</div></a>
             <a href="../pages/settings.php"><div class="nav-div">Settings</div></a>
+            <a href="../pages/seller_dashboard.php"><div class="nav-div">Seller Dashboard</div></a>
         </div>
         <div class="navbar-right">
-            <p><?php include("../crud/cartSum.php"); ?></p>
+            <p></p>
             <a href="../pages/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
         </div>
     </div>

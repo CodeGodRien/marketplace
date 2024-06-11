@@ -9,7 +9,6 @@
     </style>
 </head>
 
-
 <body>
         <div class="change-password-container">
             <div class="change-password-header">
@@ -35,6 +34,5 @@
                 <button>Confirm</button>
             </div>
         </div>
-    </div>
 </body>
 </html>

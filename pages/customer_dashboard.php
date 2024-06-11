@@ -58,7 +58,7 @@ require '../config/dbconn.php';
                                     </div>
                                 </div>
                                 <div class='details-cart'>
-                                    <div class='details-button'>More details</div>
+                                    <a href='../pages/product_details.php?productID=$productID'><div class='details-button'>More details</div></a>
                                     <a href='../crud/add_to_cart.php?productID=$productID'><div class='cart-button'><i class='fa-solid fa-cart-shopping' style='color: #ffffff;'></i></div></a>
                                 </div>
                             </div>
