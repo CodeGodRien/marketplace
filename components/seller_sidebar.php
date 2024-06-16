@@ -17,38 +17,38 @@
 <body>
     <div class="sidebar">
         <!-- Main Menu nav-link -->
-        <a href="../pages/customer_dashboard.php" class="sidebar-link">
+        <a href="../pages/customer_dashboard.php" class="sidebar-link" id="sidebar-item-1">
             <div class="sidebar-item">
-                <div class="icon"><i class="fa-solid fa-arrow-left-long"></i></div>
-                <div class="nav-title">Back to Main Menu</div>
+                <div class="icon sidebar-item-1"><i class="fa-solid fa-arrow-left-long"></i></div>
+                <div class="nav-title sidebar-item-1">Back to Main Menu</div>
             </div>
         </a>
 
-        <a href="../pages/manage_product.php" class="sidebar-link" id="sidebar-manage-products">
+        <a href="../pages/manage_product.php" class="sidebar-link" id="sidebar-item-2">
+            <div class=" sidebar-item">
+                <div class="icon sidebar-item-2"><i class="fa-solid fa-pen-to-square"></i></div>
+                <div class="nav-title sidebar-item-2">Manage Products</div>
+            </div>
+        </a>
+
+        <a href="../pages/add_product.php" class="sidebar-link" id="sidebar-item-3">
             <div class="sidebar-item">
-                <div class="icon"><i class="fa-solid fa-pen-to-square"></i></div>
-                <div class="nav-title">Manage Products</div>
+                <div class=" icon sidebar-item-3"><i class="fa-solid fa-plus"></i></div>
+                <div class="nav-title sidebar-item-3">Add Products</div>
             </div>
         </a>
 
-        <a href="../pages/add_product.php" class="sidebar-link">
-            <div class="sidebar-item" id="sidebar-add-products">
-                <div class="icon"><i class="fa-solid fa-plus"></i></div>
-                <div class="nav-title">Add Products</div>
-            </div>
-        </a>
-
-        <a href="../pages/orders.php" class="sidebar-link">
-            <div class="sidebar-item" id="sidebar-orders">
-                <div class="icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                <div class="nav-title">Orders</div>
-            </div>
-        </a>
-
-        <a href="../crud/logout.php" class="sidebar-link">
+        <a href="../pages/orders.php" class="sidebar-link" id="sidebar-item-4">
             <div class="sidebar-item">
-                <div class="icon"><i class="fa-solid fa-right-from-bracket"></i></div>
-                <div class="nav-title red">Sign out</div>
+                <div class="icon sidebar-item-4"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <div class="nav-title sidebar-item-4">Orders</div>
+            </div>
+        </a>
+
+        <a href="../crud/logout.php" class="sidebar-link" id="sidebar-item-5">
+            <div class="sidebar-item">
+                <div class=" icon sidebar-item-5"><i class="fa-solid fa-right-from-bracket"></i></div>
+                <div class="nav-title red sidebar-item-5">Sign out</div>
             </div>
         </a>
     </div>

@@ -35,18 +35,7 @@ require "../config/dbconn.php";
     <div class="registration-right">
         <div class="registration-right-container">
             <h1>Create Free Account</h1>
-            <?php
-            if (isset($_SESSION['alert'])) {
-                echo '<div class="status-message">' . $_SESSION['alert'] . '</div>';
-                unset($_SESSION['alert']);
-            }
-            ?>
-            <?php
-            if(isset($_SESSION['status'])) {
-                echo $_SESSION['status'];
-                unset($_SESSION['status']);
-             }
-            ?>
+
             <form action="../crud/generate_code.php" method="POST" id="registration-form">
                 <div class="form-row">
                     <input type="text" name="first_name" placeholder="First Name" class="registration-input-box"
@@ -63,9 +52,10 @@ require "../config/dbconn.php";
                         required>
                     <input type="password" name="confirm_password" placeholder="Confirm Password"
                         class="registration-input-box" required>
+                        <div class="resend-code-registration">
+                            <button onclick="location.href='../pages/resend_verification.php'">Resend Code</button>
+                        </div>
                 </div>
-
-                <a href="../pages/resend_verification.php" class="verification-button">Resend Verification Email</a>
 
 
                 <input type="submit" value="Sign In" name="register_btn" class="login-button">
@@ -76,3 +66,15 @@ require "../config/dbconn.php";
 </body>
 
 </html>
+<?php
+            if (isset($_SESSION['alert'])) {
+                echo $_SESSION['alert'];
+                unset($_SESSION['alert']);
+            }
+            ?>
+            <?php
+            if(isset($_SESSION['status'])) {
+                echo $_SESSION['status'];
+                unset($_SESSION['status']);
+             }
+            ?>

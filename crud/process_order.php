@@ -9,16 +9,17 @@ $productIDs = $_POST['productID'];
 $quantities = $_POST['quantity'];
 $prices = $_POST['price'];
 $paymentMethod = $_POST['payment-method'];
+$variationID = $_POST['variationID'];
 
 $sql = "INSERT INTO orders (userID, sellerID, totalAmount, paymentMethod) VALUES ('$userID', '$sellerID', '$totalAmount', '$paymentMethod')";
 mysqli_query($conn, $sql);
 $orderID = mysqli_insert_id($conn);
 
-$sql = "INSERT INTO order_items (orderID, productID, quantity, price) VALUES ";
+$sql = "INSERT INTO order_items (orderID, productID, quantity, price, variationID) VALUES ";
 $values = [];
 
 for ($i = 0; $i < count($productIDs); $i++) {
-    $values[] = "('$orderID', '" . $productIDs[$i] . "', '" . $quantities[$i] . "', '" . $prices[$i] . "')";
+    $values[] = "('$orderID', '" . $productIDs[$i] . "', '" . $quantities[$i] . "', '" . $prices[$i] . "', '" . $variationID[$i] . "')";
 }
 
 $sql .= implode(", ", $values);

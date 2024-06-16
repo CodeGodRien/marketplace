@@ -1,53 +1,38 @@
 <?php
-session_start();
-require "../config/dbconn.php";
-
-if (!isset($_SESSION['userID'])) {
-    die("User is not logged in");
-}
-
-// Database connection details
-$servername = "localhost";
-$username = "root"; // Default username for XAMPP
-$password = ""; // Default password is empty
-$dbname = "numarket";
-
-// Create connection
-$mysqli = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
-}
-
-// Get user_id from session
-$userID = $_SESSION['userID'];
-
-// Prepare and execute query to fetch user details
-$stmt = $mysqli->prepare("SELECT first_name, last_name, sex, email FROM users WHERE userID = ?");
-if ($stmt === false) {
-    die("Prepare failed: " . $mysqli->error);
-}
-
-$stmt->bind_param("i", $userID);
-$stmt->execute();
-$stmt->bind_result($first_name, $last_name, $sex, $email);
-$stmt->fetch();
-$stmt->close();
-$mysqli->close();
+    session_start();
+    require '../config/dbconn.php';
+    if (!isset($_SESSION['userID'])) {
+        header("Location: ../pages/index.php");
+    } else {
+        $userID = $_SESSION['userID'];
+        $sql = "SELECT * FROM users WHERE userID = '$userID'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $vStatus = $row['verify_status'];
+        if ($vStatus == 0) {
+            header("Location: ../pages/index.php");
+        } 
+    }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
     <link rel="stylesheet" href="../styles/index.css">
 </head>
+
 <body>
     <div class="settings-container">
-        <?php include_once '../components/sidebar.php'; ?>
+        <?php  
+        include_once '../components/sidebar.php'; 
+        $sql = "SELECT * FROM users WHERE userID = '$userID'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        ?>
         <div class="details-container">
             <div class="left-details">
                 <div class="details-header">
@@ -65,10 +50,12 @@ $mysqli->close();
                         </div>
                         <div class="form-row">
                             <div class="row-1">
-                                <input type="text" id="first_name" name="first_name" class="details-input" value="<?php echo htmlspecialchars($first_name); ?>">
+                                <input type="text" class="details-input" value="<?php echo $row['first_name']; ?>"
+                                    readonly>
                             </div>
                             <div class="row">
-                                <input type="text" id="last_name" name="last_name" class="details-input" value="<?php echo htmlspecialchars($last_name); ?>">
+                                <input type="text" class="details-input" value="<?php echo $row['last_name']; ?>"
+                                    readonly>
                             </div>
                         </div>
                         <div class="form-row">
@@ -78,7 +65,7 @@ $mysqli->close();
                         </div>
                         <div class="form-row">
                             <div class="row-1 long-row">
-                                <input type="email" id="email" name="email" class="details-input" value="<?php echo htmlspecialchars($email); ?>">
+                                <input type="text" class="details-input" value="<?php echo $row['email']; ?>" readonly>
                             </div>
                         </div>
                         <div class="form-row">
@@ -88,7 +75,8 @@ $mysqli->close();
                         </div>
                         <div class="form-row">
                             <div class="row-1 long-row">
-                                <input type="text" id="contact_number" name="contact_number" class="details-input" value="<?php echo htmlspecialchars($contact_number); ?>">
+                                <input type="text" class="details-input" value="<?php echo $row['contact_number']; ?>"
+                                    readonly>
                             </div>
                         </div>
                     </form>
@@ -102,4 +90,5 @@ $mysqli->close();
         </div>
     </div>
 </body>
+
 </html>

@@ -9,6 +9,9 @@ $categories = $_POST['categories'];
 $variationsData = json_decode($_POST['variationsData'], true);
 $paymentMethod = $_POST['paymentMethod'];
 
+if(empty(trim($_POST['productName'])) || empty(trim($_POST['productDesc']))) {
+    echo 'make sure to add product name and an description for your product';
+}
 
 if($_FILES["productImg"]["error"] === 4) {
     $_SESSION['alert'] = "<script>

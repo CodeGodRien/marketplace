@@ -22,7 +22,7 @@
             <a href="">
                 <div class="nav-div">Categories</div>
             </a>
-            <a href="">
+            <a href="../pages/my_orders.php">
                 <div class="nav-div">My Orders</div>
             </a>
             <a href="../pages/about_us.php">

@@ -30,6 +30,7 @@ $userID = $_SESSION['userID'];
         <?php include_once '../components/seller_sidebar.php'; ?>
         <div class="inner-dashboard-container">
             <div class="seller-products-container">
+                <h1>Your Products</h1>
                 <div class="manage-product-display">
                     <?php
                 $sql = "SELECT * FROM products WHERE productSellerID = '$userID'";
@@ -74,12 +75,8 @@ $userID = $_SESSION['userID'];
             </div>
         </div>
     </div>
-    <script src="../js/index.js"></script>
     <script>
-    const sidebarLinkManageProducts = document.getElementById('sidebar-manage-products');
-    sidebarLinkManageProducts.addEventListener('click', function(e) {
-        sidebarLinkManageProducts.style.backgroundColor = "white";
-    });
+
     </script>
 </body>
 

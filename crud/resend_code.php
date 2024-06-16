@@ -39,9 +39,20 @@ if (isset($_POST['resend_btn'])) {
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }    
-        
+        function isValidOutlookEmail($email) {
+            $pattern = '/^[a-zA-Z._%+-]+@([a-zA-Z0-9-]+\.)?nu-baliwag\.edu\.ph$/';
+            return preg_match($pattern, $email);
+        }
+    
+        if (empty($email) || !isValidOutlookEmail($email)) {
+            $_SESSION['alert'] = "Valid Outlook email is required.";
+            header("Location: ../pages/resend_verification.php");
+            exit(0);
+        }
+
         $checkemail_query = "SELECT * FROM users WHERE email='$email' LIMIT 1";
         $checkemail_query_run = mysqli_query($conn, $checkemail_query);
+
         
         if (mysqli_num_rows($checkemail_query_run) > 0) {
             $row = mysqli_fetch_array($checkemail_query_run);
@@ -56,7 +67,7 @@ if (isset($_POST['resend_btn'])) {
                 $_SESSION['alert'] = "Email already verified. Please Login";
             }
         } else {
-            $_SESSION['alert'] = "Email is not registered. Please Register now!";
+            $_SESSION['alert'] = "Email not found. Please register your email now!";
         }
     } else {
         $_SESSION['alert'] = "Please enter the email field";

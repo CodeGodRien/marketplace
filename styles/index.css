@@ -18,19 +18,27 @@ body {
     align-items: center;
 }
 
+.swal2-shown { 
+    display:flex; 
+    height:100vh; 
+}
+
 .login-left {
+    position: static;
     height: 100%;
     width: 60%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    position: static;
 }
 
 .login-right {
     height: 100%;
     width: 40%;
     background-color: #3182CE;
+    position: relative;
 }
 
 .upper-login {
@@ -67,6 +75,7 @@ body {
     align-items: center;
     gap: 30px;
     margin-top: 80px;
+
 }
 
 .input-box {
@@ -84,6 +93,7 @@ body {
 .login-button {
     width: 30%;
     height: 40px;
+    margin-top: -10px;
     border: none;
     background-color: #3182CE;
     color: white;
@@ -434,7 +444,7 @@ body {
     margin-bottom: 12px;
 }
 
-.product-img {
+.product-img ,.order-product-img-container img {
     max-height: 100%;
     max-width: 100%;
 }
@@ -538,6 +548,44 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 30px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .fa-cart-shopping {
@@ -841,6 +889,10 @@ body {
     align-items: center;
 }
 
+.cart-item-pic {
+    padding: 8px;
+}
+
 .cart-item-pic img {
     max-width: 100%;
     max-height: 100%;
@@ -1075,7 +1127,7 @@ body {
     border:1px solid black;
 }
 
-.change-password-container button{
+.change-password-button{
     border-radius: 20px;
     margin-left: 30px;
     margin-top: -30px;
@@ -1088,6 +1140,9 @@ body {
     font-size: 18px;
     border-radius: 8px;
     cursor: pointer;
+}
+.swal2-shown { 
+    display:flex; height:100vh; 
 }
 
 .left-about {
@@ -1968,6 +2023,17 @@ span img {
     margin-bottom: 16px;
 }
 
+#my-orders-border-bottom::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; 
+    border-bottom: 2px solid #D0D0D0;
+}
+
 .cart-item-quantity {
     column-gap: 16px;
 }
@@ -1996,7 +2062,7 @@ span img {
 
 .resend-container{
     background-color: #3182CE;
-    height:45%;
+    height:50%;
     width: 30%;
     position: fixed;
     top: 50%;
@@ -2013,7 +2079,6 @@ span img {
 }
 
 .resend-container button{
-    border-radius: 20px;
     margin-left: 30px;
     margin-top: 25px;
     height: 40px;
@@ -2023,10 +2088,25 @@ span img {
     color: #3182CE;
     font-weight: bold;
     font-size: 18px;
-    border-radius: 8px;
+    border-radius: 20px;
     cursor: pointer;
 
 }
+   
+.back-to-registration-code button{
+    height: 30px;
+    width: 31.5%;
+    margin-left: 30px;
+    margin-top: 20px;
+    border: rgb(0, 0, 0);
+    background-color: white;
+    color: #3182CE;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 
 .resend-container p{
     color: white;
@@ -2040,7 +2120,7 @@ span img {
     font-size: 20px;
     text-align: left;
     border-radius: 5px;
-    border:1px solid black;
+    border:none;
     padding-left: 10px;
 }
 
@@ -2062,18 +2142,46 @@ span img {
     margin-left: 30px;
     margin-top: 30px;
     height: 40px;
-    width: 20%;
-    border: none;
+    width: 30%;
+    border: 5px solid red;
     background-color: white;
     color: #3182CE;
     font-weight: bold;
     font-size: 18px;
-    border-radius: 8px;
     cursor: pointer;
+
 }
 .resend-verification-submit{
-    width: 36%;
-    
+    width: 35%;
+    border: none;
+}
+
+.resend-code-registration{
+    margin-left: 65%;
+    margin-top: 10%;
+    width: 250%;
+}
+.resend-code-registration button{
+    width: 30%;
+    height: 40px;
+    border: none;
+    background-color: #3182CE;
+    color: white;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.resend-code-registration input{
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: #3182CE; 
+    text-decoration: underline;
+    cursor: pointer; 
+    padding: 0; 
+    font-family: inherit
 }
 
 .add-variation {
@@ -2294,8 +2402,9 @@ span img {
     padding: 40px;
     overflow: auto;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .manage-product-display {
@@ -2371,6 +2480,29 @@ span img {
     align-items: center;
     column-gap: 16px;
   }
+.forget-password-login{
+    margin-right: 35%;
+    margin-top: -2%
+}
+
+.send-code-submit{
+
+    border: none;
+}
+
+.send-code-submit input{
+    margin-left: 30px;
+    margin-top: 30px;
+    padding-left: 25px;
+    height: 40px;
+    width: 31.5%;
+    border: none;
+    background-color: white;
+    color: #3182CE;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer
+}
 
   .about-container {
     position: absolute;

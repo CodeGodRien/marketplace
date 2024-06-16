@@ -37,6 +37,7 @@ const variationsInput = document.getElementById("variationsInput");
 const deleteButtonContainer = document.getElementById("delete-button-container");
 const productImgInput = document.getElementById("productImg");
 
+
 descriptionNextBtn.addEventListener("click", (e) => {
   addProductPage1.style.visibility = "hidden";
   addProductPage1.style.position = "absolute";
@@ -431,4 +432,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Initial check
   toggleDeleteButtonVisibility();
+});
+
+document.getElementById('allMyOrdersBtn').addEventListener('click', function() {
+  console.log("naclick ako");
+  fetch('../crud/allMyOrders.php')
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.text();
+      })
+      .then(data => {
+          document.getElementById('my-orders-page').innerHTML = data;
+      })
+      .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+      });
 });

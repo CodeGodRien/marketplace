@@ -30,7 +30,11 @@
                     <input type="text" name="email" required>
                 </div>
                 <div class="resend-verification-submit" >
-                <input type="submit" value="resend code" name = "resend_btn" class="resend-button">
+                    <input type="submit" value="resend code" name = "resend_btn" class="resend-button">
+                </div>
+
+                <div class="back-to-registration-code">
+                    <button onclick="location.href='../pages/registration.php'">Back</button>
                 </div>
             </form>
 

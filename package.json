@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@sweetalert2/theme-dark": "^5.0.16",
+    "@sweetalert2/theme-material-ui": "^5.0.16",
+    "sweetalert2": "^11.6.13"
+  }
+}

@@ -33,6 +33,8 @@ function sendemail_verify($first_name, $email, $verify_token) {
     }
 }
 
+
+
 if (isset($_POST["register_btn"])) {
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
@@ -42,9 +44,35 @@ if (isset($_POST["register_btn"])) {
     $confirm_password = $_POST["confirm_password"];
     $verify_token = md5(uniqid(time()));
 
-    // Check if passwords match
+    //validate Philippine number
+    function isValidPhilippineNumber($contact_number) {
+        $pattern = '/^(\+63|0)9\d{9}$|^02\d{7}$|^0[3-9]\d{7,8}$/';
+        return preg_match($pattern, $contact_number);
+    }
+
+    //validate Outlook email
+    function isValidOutlookEmail($email) {
+        $pattern = '/^[a-zA-Z._%+-]+@([a-zA-Z0-9-]+\.)?nu-baliwag\.edu\.ph$/';
+        return preg_match($pattern, $email);
+    }
+
+    //Validate email
+    if (empty($email) || !isValidOutlookEmail($email)) {
+        $_SESSION['alert'] = "Valid NU email is required.";
+        header("Location: ../pages/registration.php");
+        exit(0);
+    }
+
+    //Validate contact number
+    if (empty($contact_number) || !isValidPhilippineNumber($contact_number)) {
+        $_SESSION['alert'] = "Contact number should be in Philippine format.";
+        header("Location: ../pages/registration.php");
+        exit(0);
+    }
+
+    //Check if passwords match
     if ($password !== $confirm_password) {
-        $_SESSION['alert'] = "Passwords do not match";
+        $_SESSION['alert'] = "Passwords do not match.";
         header("Location: ../pages/registration.php");
         exit(0);
     }
@@ -54,7 +82,7 @@ if (isset($_POST["register_btn"])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Check if the email or contact number already exists
+    //Check if the email or contact number already exists
     $sql = "SELECT * FROM users WHERE email = ? OR contact_number = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $email, $contact_number);
@@ -62,27 +90,27 @@ if (isset($_POST["register_btn"])) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        $_SESSION['alert'] = "Email or Contact Number already registered";
+        $_SESSION['alert'] = "Email or Contact Number already registered.";
+        header("Location: ../pages/registration.php");
+        exit(0);
+    }
+
+ 
+    $sql = "INSERT INTO users (first_name, last_name, email, contact_number, userPassword, verify_token) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssss", $first_name, $last_name, $email, $contact_number, $password, $verify_token);
+
+    if ($stmt->execute()) {
+
+        sendemail_verify($first_name, $email, $verify_token);
+        $_SESSION['alert'] = "Registration successful! Please verify your email.";
+        $_SESSION['user_email'] = $email; 
         header("Location: ../pages/registration.php");
         exit(0);
     } else {
-        // Insert new user
-        $sql = "INSERT INTO users (first_name, last_name, email, contact_number, userPassword, verify_token) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssss", $first_name, $last_name, $email, $contact_number, $password, $verify_token);
-
-        if ($stmt->execute()) {
-            // Send verification email
-            sendemail_verify($first_name, $email, $verify_token);
-            $_SESSION['alert'] = "Registration successful! Please verify your email.";
-            $_SESSION['user_email'] = $email; 
-            header("Location: ../pages/registration.php");
-            exit(0);
-        } else {
-            $_SESSION['alert'] = "Registration failed! Please try again.";
-            header("Location: ../pages/registration.php");
-            exit(0);
-        }
+        $_SESSION['alert'] = "Registration failed! Please try again.";
+        header("Location: ../pages/registration.php");
+        exit(0);
     }
 }
 ?>
