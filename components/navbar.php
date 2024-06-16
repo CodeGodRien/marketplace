@@ -28,7 +28,7 @@
             <a href="../pages/about_us.php">
                 <div class="nav-div">About Us</div>
             </a>
-            <a href="">
+            <a href="../pages/contact_us.php">
                 <div class="nav-div">Contact Us</div>
             </a>
             <a href="../pages/settings.php">

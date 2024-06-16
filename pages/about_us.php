@@ -27,25 +27,23 @@ require "../config/dbconn.php";
         </div>
 
         <div class="about-desc">
-        <p> Welcome to [Company Name], where innovation meets excellence.
-At [Company Name], we are passionate about [describe core mission or purpose]. Our journey began with a simple idea: to [describe initial inspiration or founding principle]. Since then, we've grown into a dynamic team dedicated to [describe primary objectives or goals].
-Driven by a commitment to [describe key values or principles], we strive to [describe desired impact or outcome]. Our relentless pursuit of quality and creativity fuels everything we do, from [describe key activities or products] to [describe additional contributions or initiatives].
-As a company, we believe in [describe broader philosophy or ethos], fostering a culture of [describe desired workplace atmosphere or values]. Our team is comprised of [describe attributes of team members], each bringing unique perspectives and expertise to the table.
-Join us on our journey as we continue to [describe vision for the future]. Together, we can [describe desired collective achievement or impact].
-Thank you for choosing [Company Name]. 
-        </p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3854.579631302055!2d120.89017737415661!3d14.960495468165991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396fffe81226745%3A0xd61662a7648edf6b!2sSM%20Baliwag%2C%20Do%C3%B1a%20Remedios%20Trinidad%20Hwy%2C%20Pagala%2C%20Baliwag%2C%203006%20Bulacan!5e0!3m2!1sen!2sph!4v1718559983499!5m2!1sen!2sph" 
+            width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
         <div class="about-btn">
-        <button class="about-btn2">Join Us!</button>
+        <a href="../pages/about_us.php">
+                
+            </a>
+        <button class="about-btn2">Back to Home Page</button>
         </div>
 
         <div class="nub1-img-div">
-        <img src="../about_pics/nub1.png" alt="" class="nub1-image">
+        <img src="../about_contact_pics/about-img.png" alt="" class="nub1-image">
         </div>
 
         <div class="nub2-img-div">
-        <img src="../about_pics/nub2.png" alt="" class="nub2-image">
+        <img src="../about_contact_pics/about-img2.png" alt="" class="nub2-image">
         </div>
 
         <div class="about-rectangle">

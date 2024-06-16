@@ -2371,3 +2371,176 @@ span img {
     align-items: center;
     column-gap: 16px;
   }
+
+  .about-container {
+    position: absolute;
+    padding-left: 5%;
+    top: 100px;
+    min-height: calc(100vh - 80px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .about-h1 {
+    color: rgba(49, 130, 206, 1);
+    font-size: 26px;
+    padding-right: 82%;
+  }
+
+  .about-h2 {
+    color: rgba(255, 215, 0, 1);
+    font-size: 20px;
+    padding-right: 81%;
+  }
+
+  .about-desc {
+    font-size: 17px;
+    text-align: left;
+    padding-top: 2%;
+    padding-right: 65%;
+  }
+
+  .nub1-img-div {
+    position: absolute;
+    left: 65%;
+    top: 10%;
+  }
+
+  .nub2-img-div {
+    position: absolute;
+    left: 45%;
+    top: 65%;
+    border: #3182CE;
+  }
+
+  .about-rectangle {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    height: 100%;
+    width: 40%;
+    background-color: #3182CE;
+    z-index: -1;
+  }
+
+  .about-btn {
+    position: absolute;
+    background-color: #004f69;
+    top: 110%;
+  }
+
+  .about-btn2 {
+    position: absolute;
+    background-color: #008CBA;
+    border: none;
+    width: 150px;
+    height: 55px;
+    color: white;
+    text-align: none;
+    text-decoration: none;
+    border-radius: 20%;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+    top: 110%;
+    right: 530px;
+  }
+
+  .contact-img-div {
+    position: fixed;
+    left: 20%;
+  }
+
+  .contact-img {
+    position: fixed;
+    height: 45%;
+    width: 35%;
+    top: 30%;
+    left: 15%;
+  }
+
+  .contact-h1 {
+    position: fixed;
+    top: 28%;
+    right: 29%;
+    font-size: 26px;
+    color: white;
+  }
+
+  .contact-h2 {
+    position: fixed;
+    left: 55%;
+    top: 40%;
+    color: rgba(255, 215, 0, 1);
+    font-size: 18px;
+  }
+
+  .contact-p {
+    position: fixed;
+    left: 55%;
+    top: 50%;
+    color: white;
+    font-size: 16px;
+  }
+
+  .contact2-p2 {
+    position: fixed;
+    left: 65%;
+    top: 50%;
+    color: white;
+    font-size: 16px;
+    text-align: left;
+    padding-left: 5%;
+  }
+
+  .contact2-h2 {
+    position: fixed;
+    left: 70%;
+    top: 40%;
+    color: rgba(255, 215, 0, 1);
+    font-size: 18px;
+  }
+
+  .contact-email {
+    position: absolute;
+    left: 55%;
+    top: 65%;
+    color: black;
+    font-size: 18px;
+  }
+
+  .contact-email2 {
+    position: absolute;
+    left: 55%;
+    top: 60%;
+    color: white;
+    font-size: 18px;
+  }
+
+  .submit-email {
+    position: absolute;
+    left: 73%;
+    top: 64%;
+    background-color: #FFD700;
+    font-size: 18px;
+    border: none;
+    padding: 9px 10px;
+    text-align: none;
+    text-decoration: none;
+    border-radius: 15%;
+    display: inline-block;
+    font-size: 18px;
+  }
+
+  .contact-rectangle {
+    position: fixed;
+    top: 17%;
+    right: -10%;
+    height: 100%;
+    width: 120%;
+    background-color: #3182CE;
+    z-index: -1;
+  }
