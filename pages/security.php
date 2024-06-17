@@ -1,3 +1,9 @@
+<?php
+session_start();
+require "../config/dbconn.php";
+require "../crud/verify_status.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +46,7 @@
                     Re-type New Password
                     <div>
                         <input type="text" placeholder="Re-type New Password" class="security-input-box">
-                        <a href="">Forgotten your password?</a>
+
                     </div>    
                 </div>
                 </form>

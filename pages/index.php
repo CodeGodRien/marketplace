@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "../config/dbconn.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -51,9 +52,3 @@ require "../config/dbconn.php";
 
 </html>
 
-<?php
-            if(isset($_SESSION['alert'])) {
-                echo $_SESSION['alert'];
-                unset($_SESSION['alert']);
-            }
-            ?>

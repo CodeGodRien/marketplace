@@ -2513,18 +2513,21 @@ span img {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    overflow: hidden;
   }
 
   .about-h1 {
     color: rgba(49, 130, 206, 1);
     font-size: 26px;
     padding-right: 82%;
+    overflow: hidden;
   }
 
   .about-h2 {
     color: rgba(255, 215, 0, 1);
     font-size: 20px;
     padding-right: 81%;
+    overflow: hidden;
   }
 
   .about-desc {
@@ -2532,6 +2535,7 @@ span img {
     text-align: left;
     padding-top: 2%;
     padding-right: 65%;
+    overflow: hidden;
   }
 
   .nub1-img-div {

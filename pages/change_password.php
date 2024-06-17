@@ -1,5 +1,7 @@
 <?php
-$token = $_GET['token_pass'];
+session_start();
+require "../config/dbconn.php";
+require "../crud/verify_status.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

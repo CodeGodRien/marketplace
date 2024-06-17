@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "../config/dbconn.php";
+require "../crud/verify_status.php";
 ?>
 
 <!DOCTYPE html>

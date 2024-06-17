@@ -1,18 +1,32 @@
 <?php
 session_start();
 require "../config/dbconn.php";
+
 if (!isset($_SESSION['userID'])) {
     header("Location: ../pages/index.php");
+    exit;
 } else {
     $userID = $_SESSION['userID'];
-    $sql = "SELECT * FROM users WHERE userID = '$userID'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $vStatus = $row['verify_status'];
-    if ($vStatus == 0) {
-        header("Location: ../pages/index.php");
-    } 
-}  
+    
+    $sql = "SELECT verify_status FROM users WHERE userID = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $userID);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $vStatus);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+        if ($vStatus == 0) {
+            header("Location: ../pages/index.php");
+            exit;
+        }
+    } else {
+        echo "Error preparing the SQL statement.";
+    }
+}
+
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -42,11 +56,11 @@ if (!isset($_SESSION['userID'])) {
             width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
+        
         <div class="about-btn">
-        <a href="../pages/about_us.php">
-                
-            </a>
+        <a href="../pages/customer_dashboard.php">
         <button class="about-btn2">Back to Home Page</button>
+        </a>
         </div>
 
         <div class="nub1-img-div">
