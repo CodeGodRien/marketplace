@@ -1,6 +1,7 @@
 <?php
 require "../config/dbconn.php";
 $userID = $_GET['userID'];
+
 $sql = "SELECT 
             orders.*, 
             CONCAT(users.first_name, ' ', users.last_name) AS buyerFullName, 
@@ -16,15 +17,18 @@ $sql = "SELECT
         INNER JOIN 
             products ON order_items.productID = products.productID
         WHERE 
-            orders.sellerID = '$userID'
+            orders.sellerID = ?
         GROUP BY 
             orders.orderID
         ORDER BY
-            orders.orderDate DESC;";
-            
-$result = mysqli_query($conn, $sql);
+            orders.orderDate DESC";
 
-if (mysqli_num_rows($result) > 0) {
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $userID);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
     echo '<table class="orders-table" id="orders-table">';
     echo '<thead>
             <tr id="orders-tr">
@@ -40,19 +44,19 @@ if (mysqli_num_rows($result) > 0) {
             </tr>
           </thead>';
     echo '<tbody>';
-    foreach ($result as $row) {
+    while ($row = $result->fetch_assoc()) {
         $orderID = $row['orderID'];
         $orderStatus = $row['orderStatus'];
         echo '<tr class="orders-tr">';
-        echo '<td class="td-orderID">' . $row['orderID'] . '</td>'; 
-        echo '<td class="td-buyerName">' . $row['buyerFullName'] . '</td>'; 
-        echo '<td class="td-totalAmount">' . $row['totalAmount'] . '</td>'; 
-        echo '<td class="td-itemQty">' . $row['totalQuantity'] . '</td>'; 
-        echo '<td class="td-productName">' . $row['productNames'] . '</td>'; 
-        echo '<td class="td-paymentMethod">' . $row['paymentMethod'] . '</td>'; 
-        echo '<td class="td-orderDate">' . $row['formattedOrderDate'] . '</td>'; 
-        echo '<td class="td-orderStatus">' . $row['orderStatus'] . '</td>'; 
-        echo '<td class="td-nextBtn"><i class="fa-solid fa-chevron-right" data-order-id="' . $orderID . '" data-order-status="' . $orderStatus . '"></i></td>';
+        echo '<td class="td-orderID">' . htmlspecialchars($row['orderID']) . '</td>'; 
+        echo '<td class="td-buyerName">' . htmlspecialchars($row['buyerFullName']) . '</td>'; 
+        echo '<td class="td-totalAmount">' . htmlspecialchars($row['totalAmount']) . '</td>'; 
+        echo '<td class="td-itemQty">' . htmlspecialchars($row['totalQuantity']) . '</td>'; 
+        echo '<td class="td-productName">' . htmlspecialchars($row['productNames']) . '</td>'; 
+        echo '<td class="td-paymentMethod">' . htmlspecialchars($row['paymentMethod']) . '</td>'; 
+        echo '<td class="td-orderDate">' . htmlspecialchars($row['formattedOrderDate']) . '</td>'; 
+        echo '<td class="td-orderStatus">' . htmlspecialchars($row['orderStatus']) . '</td>'; 
+        echo '<td class="td-nextBtn"><i class="fa-solid fa-chevron-right" data-order-id="' . htmlspecialchars($orderID) . '" data-order-status="' . htmlspecialchars($orderStatus) . '"></i></td>';
         echo '</tr>';
     }
     echo '</tbody>';
@@ -60,4 +64,7 @@ if (mysqli_num_rows($result) > 0) {
 } else {
     echo '<p>No orders found.</p>';
 }
+
+$stmt->close();
+$conn->close();
 ?>

@@ -9,56 +9,63 @@ $eta = isset($_POST['eta']) ? $_POST['eta'] : null;
 if ($orderID && $action) {
     if ($action === 'approve') {
         if ($eta) {
-            $sql = "UPDATE orders SET paymentStatus = 'Payment Verified', orderStatus = 'To Receive', deliveryDate = '$eta' WHERE orderID = '$orderID'";
-            $result = mysqli_query($conn, $sql);
-            if ($result) {
-                $_SESSION['alert'] = "
+            // Update query with prepared statement for security
+            $sql = "UPDATE orders SET paymentStatus = 'Payment Verified', orderStatus = 'To Receive', deliveryDate = ? WHERE orderID = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("si", $eta, $orderID);
+            $stmt->execute();
+            $stmt->close();
+
+            $_SESSION['alert'] = "
                 <script>
                     const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'bottom-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.onmouseenter = Swal.stopTimer;
-                      toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
+                        toast: true,
+                        position: 'bottom-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
                     Toast.fire({
-                      icon: 'success',
-                      title: 'Verified Payment for Order #{$orderID}'
+                        icon: 'success',
+                        title: 'Verified Payment for Order #{$orderID}'
                     });
                 </script>
-                ";
-            }
+            ";
         }
-        
-    } else {
-        $sql = "UPDATE orders SET paymentStatus = 'Payment Not Verified', orderStatus = 'Completed', detailedStatus = 'Order Cancelled', paymentStatus = 'Payment not verified' WHERE orderID = '$orderID'";
-            $result = mysqli_query($conn, $sql);
-            if ($result) {
-                $_SESSION['alert'] = "
-                <script>
-                    const Toast = Swal.mixin({
+    } elseif ($action === 'cancel') {
+        // Update query for order cancellation with prepared statement
+        $sql = "UPDATE orders SET paymentStatus = 'Payment Not Verified', orderStatus = 'Completed', detailedStatus = 'Order Cancelled' WHERE orderID = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $orderID);
+        $stmt->execute();
+        $stmt->close();
+
+        $_SESSION['alert'] = "
+            <script>
+                const Toast = Swal.mixin({
                     toast: true,
                     position: 'bottom-end',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
-                      toast.onmouseenter = Swal.stopTimer;
-                      toast.onmouseleave = Swal.resumeTimer;
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
                     }
                 });
-                    Toast.fire({
-                      icon: 'success',
-                      title: 'Verified Payment for Order #{$orderID}'
-                    });
-                </script>
-                ";
-            }
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Cancelled Order #{$orderID}'
+                });
+            </script>
+        ";
     }
+
     header("Location: ../pages/orders.php");
-    
+    exit();
 }
+?>

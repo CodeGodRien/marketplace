@@ -8,46 +8,59 @@ $page = $_GET['pageID'];
 $variationName = $_GET['variation'];
 $size = $_GET['size'];
 
-
-$sql = "SELECT * FROM products WHERE productID = '$productID'";
-$result = mysqli_query($conn, $sql);
+// Prepare and execute the first SQL statement
+$sql = "SELECT * FROM products WHERE productID = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, 's', $productID);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_assoc($result);
 $productName = $row['productName'];
 $productSellerID = $row['productSellerID'];
 
-$sql = "SELECT * FROM variations WHERE variationName = '$variationName' AND variationSize = '$size' AND productID = '$productID'";
-$result = mysqli_query($conn, $sql);
+// Prepare and execute the second SQL statement
+$sql = "SELECT * FROM variations WHERE variationName = ? AND variationSize = ? AND productID = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, 'sss', $variationName, $size, $productID);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_assoc($result);
 $price = $row['variationPrice'];
 $variationID = $row['variationID'];
 
-$sql = "SELECT * FROM cart WHERE productID = '$productID' AND variationID = '$variationID' AND userID = '$userID'";
-$result = mysqli_query($conn, $sql);
+// Prepare and execute the third SQL statement
+$sql = "SELECT * FROM cart WHERE productID = ? AND variationID = ? AND userID = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, 'sss', $productID, $variationID, $userID);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 
 if (mysqli_num_rows($result) > 0) {
-    $sql = "UPDATE cart SET quantity = quantity + 1 WHERE productID = '$productID' AND variationID = '$variationID' AND userID = '$userID'";
-    if (mysqli_query($conn, $sql)) {
-        //write alert here
+    // Prepare and execute the update statement
+    $sql = "UPDATE cart SET quantity = quantity + 1 WHERE productID = ? AND variationID = ? AND userID = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 'sss', $productID, $variationID, $userID);
+    if (mysqli_stmt_execute($stmt)) {
+        // Success alert
     } else {
-        //write alert here
-        
+        // Error alert
     }
-    
 } else {
-    $sql = "INSERT INTO cart (userID, productID, sellerID, quantity, unitPrice, timeAdded, variationID) VALUES ('$userID', '$productID', '$productSellerID', 1,
-    '$price', CURRENT_TIMESTAMP, '$variationID')";
-    
-    if (mysqli_query($conn, $sql)) {
-        
+    // Prepare and execute the insert statement
+    $sql = "INSERT INTO cart (userID, productID, sellerID, quantity, unitPrice, timeAdded, variationID) VALUES (?, ?, ?, 1, ?, CURRENT_TIMESTAMP, ?)";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 'sssss', $userID, $productID, $productSellerID, $price, $variationID);
+    if (mysqli_stmt_execute($stmt)) {
+        // Success alert
     } else {
-        
+        // Error alert
     }
 }
+
 if ($page != "detailed") {
     header("Location: ../pages/customer_dashboard.php");
 } else {
     header("Location: ../pages/product_details.php?productID=$productID");
 }
 exit();
-
 ?>
