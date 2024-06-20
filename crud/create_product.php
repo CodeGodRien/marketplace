@@ -41,11 +41,13 @@ if ($_FILES["productImg"]["error"] === 4) {
         $destination = '../product_img/' . $newImageName;
 
         if (move_uploaded_file($tmpName, $destination)) {
-            // Insert product into database
+            // Insert product into database using prepared statement
             $sql = "INSERT INTO products (productName, productSellerID, productDesc, productPrice, productStock, productImg) 
-                    VALUES ('$productName', '$productSellerID', '$productDesc', '$productPrice', '$productStock', '$newImageName')";
+                    VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "sisds", $productName, $productSellerID, $productDesc, $productPrice, $productStock, $newImageName);
 
-            if (mysqli_query($conn, $sql)) {
+            if (mysqli_stmt_execute($stmt)) {
                 $_SESSION['alert'] = "
                     <script>
                         Swal.fire({
@@ -75,5 +77,4 @@ if ($_FILES["productImg"]["error"] === 4) {
         }
     }
 }
-
 ?>

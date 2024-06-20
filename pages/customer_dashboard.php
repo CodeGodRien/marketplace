@@ -105,6 +105,41 @@ if (!isset($_SESSION['userID'])) {
         </div>
     </div>
     <script>
+        /*function loadCategory(category) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'getProducts.php?category=' + category, true);
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const products = JSON.parse(xhr.responseText);
+            displayProducts(products, category);
+        } else {
+            console.error('Failed to fetch products');
+        }
+    };
+
+    xhr.send();
+}
+
+function displayProducts(products, category) {
+    const productList = document.getElementById('product-list');
+    let productsHTML = `<h2>${capitalizeFirstLetter(category)} Products</h2><ul>`;
+
+    if (products.length === 0) {
+        productsHTML += '<li>No products found</li>';
+    } else {
+        products.forEach(product => {
+            productsHTML += `<li>${product}</li>`;
+        });
+    }
+
+    productsHTML += '</ul>';
+    productList.innerHTML = productsHTML;
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+} */
     document.addEventListener("DOMContentLoaded", function() {
         // Get all elements with class "cart-button"
         var buttons = document.querySelectorAll(".cart-button");
