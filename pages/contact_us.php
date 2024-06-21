@@ -32,7 +32,7 @@ require "../crud/verify_status.php";
 
         <div class="contact-p">
         <p> NU Baliuag  Located in: SM City Baliwag
-        Address: Complex, SM Baliwag, Doña Remedios Trinidad Hwy, Baliwag, Bulacan</p>
+         Address: Complex, SM Baliwag, Doña Remedios Trinidad Hwy, Baliwag, Bulacan</p>
         </div>
 
         <div class="contact2-h2">
