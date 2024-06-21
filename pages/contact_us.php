@@ -31,7 +31,8 @@ require "../crud/verify_status.php";
         </div>
 
         <div class="contact-p">
-        <p> NU Baliuag </p>
+        <p> NU Baliuag  Located in: SM City Baliwag
+        Address: Complex, SM Baliwag, Doña Remedios Trinidad Hwy, Baliwag, Bulacan</p>
         </div>
 
         <div class="contact2-h2">
@@ -39,17 +40,16 @@ require "../crud/verify_status.php";
         </div>
 
         <div class="contact2-p2">
-        <p> company@gmail.com 09616493098 </p>
+        admissions-nubaliwag@nu.edu.ph </br>
+
+0919 081 4635 (Smart) </br>
+
+0927 533 0342 (Globe) </br>
+
+0923 949 5265 (Sun)
+        </p>
         </div>
 
-        <div class="contact-email2">
-        Tell us your thoughts!
-        </div>
-
-        <div>
-        <input type="text" placeholder="Enter Email" class="contact-email">
-        <input type="submit" value="subscribe" name="subscribeEmail" class="submit-email"> 
-        </div>
 
         <div class="contact-rectangle">
         </div>
